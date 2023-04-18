@@ -2,12 +2,6 @@ pragma solidity ^0.8.4;
 
 contract Test {
 
-    struct TradeDetails {
-        address _proxy;
-        uint256 value;
-        bytes tradeData;
-    }
-
     function buy(bytes calldata bundle_) payable external {
         (address[] memory contracts_, uint256[] memory values_, bytes[] memory data_) = abi.decode(
             bundle_,
