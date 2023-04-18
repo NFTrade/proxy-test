@@ -4,7 +4,7 @@ const { listNFT, marketData ,getFillData} = require('./utils/nifty/nifty');
 const Test = artifacts.require('./Test.sol');
 const NFT = artifacts.require('./NFT.sol');
 
-contract('Orderbook', (accounts) => {
+contract('Test', (accounts) => {
   let test;
   let nft;
 
