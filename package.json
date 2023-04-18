@@ -1,0 +1,24 @@
+{
+  "name": "nft",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "truffle test",
+    "list_seaport": "truffle exec scripts/list_seaport.js",
+    "coverage": "truffle run coverage"
+  },
+  "devDependencies": {
+    "@openzeppelin/contracts": "^4.6.0",
+    "truffle-plugin-verify": "^0.5.28"
+  },
+  "dependencies": {
+    "@gelatonetwork/relay-context": "^0.1.1",
+    "@opensea/seaport-js": "^1.0.4",
+    "@truffle/hdwallet-provider": "^2.0.8",
+    "bignumber.js": "^9.0.2",
+    "chai": "^4.3.6",
+    "chai-bignumber": "^3.0.0",
+    "ethers": "^5.6.9",
+    "solidity-coverage": "0.8.0-beta.1",
+    "truffle-assertions": "^0.9.2"
+  }
+}
