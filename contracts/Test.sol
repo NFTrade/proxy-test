@@ -8,11 +8,17 @@ contract Test {
         bytes tradeData;
     }
 
-    function buy(TradeDetails calldata tradeDetails) payable external {
-        (bool success, ) = payable(tradeDetails._proxy).call{value: tradeDetails.value}(
-            tradeDetails.tradeData
+    function buy(bytes calldata bundle_) payable external {
+        (address[] memory contracts_, uint256[] memory values_, bytes[] memory data_) = abi.decode(
+            bundle_,
+            (address[], uint256[], bytes[])
         );
-        require(success, "Test: Trade failed");
+
+        for (uint256 i = 0; i < contracts_.length; i++) {
+            (bool success_, ) = payable(contracts_[i]).call{value: values_[i]}(data_[i]);
+
+            require(success_, "BundleExecutorImplementation: call reverted");
+        }
     }
 
     receive() external payable {}

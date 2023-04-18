@@ -1,3 +1,4 @@
+const { utils } = require('ethers');
 const { listNFT, marketData ,getFillData} = require('./utils/nifty/nifty');
 
 const Test = artifacts.require('./Test.sol');
@@ -45,8 +46,17 @@ contract('Orderbook', (accounts) => {
       const data = await getFillData(marketData.contractAddress, buyer, executer, tradeDetails, list.makerAssetAmount);
       console.log(data);
 
+      const bundle = utils.defaultAbiCoder.encode(
+        ['address[]', 'uint256[]', 'bytes[]'],
+        [
+          [marketData.contractAddress],
+          [data.value],
+          [data.data],
+        ],
+      );
+
       await test.buy(
-        [marketData.contractAddress, data.value, data.data],
+        bundle,
         {
           from: data.from,
           value: data.value
